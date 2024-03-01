@@ -8,7 +8,7 @@ input.onButtonPressed(Button.B, function () {
     reportStatus();
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    serial.writeLine("" + (JSON.stringify({ type: 'mqtt', topic: 'tts', message: `My name is Miguel` })))
+    serial.writeLine("" + (JSON.stringify({ type: 'mqtt', topic: 'tts', message: `My name is Ale` })))
     basic.showIcon(IconNames.Heart)
     basic.clearScreen()
 })
@@ -18,7 +18,22 @@ serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
         basic.showIcon(IconNames.Yes)
         basic.clearScreen()
     } else {
-        basic.showString(serialData)
+        switch (serialData) {
+            case "MOVE_CAR":
+                basic.showString(serialData)
+                break;
+            case "STOP_CAR":
+                basic.showString(serialData)
+                break;
+            case "CAR_GO_FASTER":
+                basic.showString(serialData)
+                break;
+            case "CAR_GO_SLOWER":
+                basic.showString(serialData)
+                break;
+            default:
+                break;
+        }       
         basic.clearScreen()
     }
 })
